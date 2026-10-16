@@ -1,0 +1,70 @@
+
+LIBRARY MANAGEMENT SYSTEM - UML CLASS DIAGRAM
+
+1. Book
+Attributes:
+- bookId: String
+- title: String
+- author: String
+- available: boolean
+
+Methods:
+- getBookId()
+- getTitle()
+- getAuthor()
+- isAvailable()
+- setTitle()
+- setAuthor()
+- setAvailable()
+- displayInfo()
+
+2. Library
+Attribute:
+- books: ArrayList<Book>
+
+Methods:
+- addBook()
+- getBooks()
+- searchBook()
+- updateBook()
+- deleteBook()
+- borrowBook()
+- returnBook()
+
+3. LibraryUser (Abstract Class)
+Attributes:
+- userId: String
+- name: String
+
+Methods:
+- getUserId()
+- getName()
+- getRole() [abstract]
+- displayUserInfo()
+
+4. Student
+Inheritance: extends LibraryUser
+
+Method:
+- getRole() returns "Student"
+
+5. Librarian
+Inheritance: extends LibraryUser
+
+Method:
+- getRole() returns "Librarian"
+
+6. LibraryGUI
+Purpose:
+- Provides the graphical user interface.
+- Allows users to add, view, search, update, delete, borrow, and return books.
+
+7. Main
+Purpose:
+- Tests library operations using Java objects.
+
+OOP PRINCIPLES:
+- Encapsulation: Private fields in Book and LibraryUser.
+- Inheritance: Student and Librarian extend LibraryUser.
+- Abstraction: LibraryUser is an abstract class.
+- Polymorphism: Student and Librarian override getRole().

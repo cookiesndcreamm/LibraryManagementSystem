@@ -1,0 +1,76 @@
+
+@startuml
+title Library Management System
+
+class Book {
+  - bookId: String
+  - title: String
+  - author: String
+  - available: boolean
+  + Book(bookId: String, title: String, author: String)
+  + getBookId(): String
+  + getTitle(): String
+  + getAuthor(): String
+  + isAvailable(): boolean
+  + setTitle(title: String): void
+  + setAuthor(author: String): void
+  + setAvailable(available: boolean): void
+  + displayInfo(): void
+}
+
+class Library {
+  - books: ArrayList<Book>
+  + Library()
+  + addBook(book: Book): boolean
+  + getBooks(): ArrayList<Book>
+  + searchBook(keyword: String): Book
+  + deleteBook(bookId: String): boolean
+  + updateBook(bookId: String, newTitle: String, newAuthor: String): boolean
+  + borrowBook(bookId: String): boolean
+  + returnBook(bookId: String): boolean
+}
+
+abstract class LibraryUser {
+  - userId: String
+  - name: String
+  + LibraryUser(userId: String, name: String)
+  + getUserId(): String
+  + getName(): String
+  {abstract} + getRole(): String
+  + displayUserInfo(): void
+}
+
+class Student {
+  + Student(userId: String, name: String)
+  + getRole(): String
+}
+
+class Librarian {
+  + Librarian(userId: String, name: String)
+  + getRole(): String
+}
+
+class LibraryGUI {
+  - PURPLE: Color
+  - PINK: Color
+  - LAVENDER: Color
+  - WHITE: Color
+  - idField: JTextField
+  - titleField: JTextField
+  - authorField: JTextField
+  - library: Library
+  + LibraryGUI()
+  + main(args: String[]): void
+}
+class Main {
+  + main(args: String[]): void
+}
+
+Library "1" *-- "0..*" Book
+Student --|> LibraryUser
+Librarian --|> LibraryUser
+LibraryGUI --|> JFrame
+LibraryGUI --> Library
+Main ..> Library
+
+@enduml
